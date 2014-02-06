@@ -21,7 +21,7 @@ public class MyButtonListener
 		{
 			public void buttonPressed(Button b){ press1 = true; }
 			
-			@Override
+			//@Override
 			public void buttonReleased(Button b){}
 		});
 

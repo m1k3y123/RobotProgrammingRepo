@@ -25,7 +25,7 @@ public class TouchTestEvent
 	{
 		m_port.addSensorPortListener(new SensorPortListener()
 		{
-			@Override
+			//@Override
 			public void stateChanged(SensorPort aSource, int aOldValue, int aNewValue)
 			{
 				if(aNewValue > aOldValue && aNewValue < 1000)
