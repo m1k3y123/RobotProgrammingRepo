@@ -1,6 +1,5 @@
 package part1.linefollower;
 
-import lejos.nxt.LightSensor;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Behavior;
 
@@ -9,19 +8,22 @@ public class FollowerForward implements Behavior
     private DifferentialPilot m_pilot;
     private boolean m_suppressed = false;
     
-    public FollowerForward(DifferentialPilot _pilot) { m_pilot = _pilot; }
+    public FollowerForward(DifferentialPilot _pilot) { m_pilot = _pilot;}
     
     @Override
-    public boolean takeControl() { return false; }
+    public boolean takeControl() { return true; }
 
     @Override
     public void action()
     {
-	m_suppressed = false;
+        m_pilot.setTravelSpeed(4.0);
 	m_pilot.forward();
-	
-	while(!m_suppressed)
-	    Thread.yield();
+        m_suppressed = false;
+		
+		while(!m_suppressed)
+		{
+		    Thread.yield();
+		}
     }
 
     @Override

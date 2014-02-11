@@ -23,17 +23,22 @@ public class LineFollower
 	m_light_left = _light_left;
 	m_light_right = _light_right;
 	
-	System.out.println("Press button to calibrate the sensors (3 seconds to position the robot");
+	System.out.println("Press button to calibrate the sensors (3 seconds to position the robot)");
 	Button.waitForAnyPress();
+	m_cal_left = m_light_left.getNormalizedLightValue();
+	m_cal_right = m_light_right.getNormalizedLightValue();
+	System.out.println("Wait");
 	Delay.msDelay(3000);
+	System.out.println("Running");
 	
-	// Check this as I haven't got the light sensors at home.
-	m_light_left.setFloodlight(true);
-	m_light_right.setFloodlight(true);
 	
 	// Is this the right method to call to get the reflected light rather than the ambient light? Again, do some sysout's to check.
-	m_cal_left = m_light_left.getLightValue();
-	m_cal_right = m_light_right.getLightValue();
+	
+//	Button.waitForAnyPress();
+//	System.out.println("Press button for max left");
+//	m_light_left.c((m_light_left.getLightValue());
+
+	
     }
     
     public void run()
@@ -48,17 +53,28 @@ public class LineFollower
         // Set up the behaviors for when the light value of a sensor decreases below the original (set above) in an arby.
         Arbitrator arby = new Arbitrator(behaviors);
         
-        // Start arby.
-        arby.start();
-		
+	// Check this as I haven't got the light sensors at home.	
+	m_light_left.setFloodlight(true);
+	m_light_right.setFloodlight(true);
+	
+       //while(true)
+        //{
+       // 	Button.waitForAnyPress();
+       // 	System.out.println("Left : " + m_light_left.getNormalizedLightValue());
+       // 	System.out.println("Right : " + m_light_right.getNormalizedLightValue());
+        //}
+        
+         //Start arby.
+       arby.start();	
+        
     }
     
     public static void main(String[] args)
     {
 	// Set up the pilot and both light sensors.
 	DifferentialPilot pilot = new DifferentialPilot(2.2, 4.0, Motor.A, Motor.C);
-	LightSensor light_left = new LightSensor(SensorPort.S1);
-	LightSensor light_right = new LightSensor(SensorPort.S2);
+	LightSensor light_left = new LightSensor(SensorPort.S3);
+	LightSensor light_right = new LightSensor(SensorPort.S1);
 	
 	// Create the line follower.
 	LineFollower follow = new LineFollower(pilot, light_left, light_right);
