@@ -1,14 +1,15 @@
-package part1.linefollower;
+package part2.gridfollower;
 
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Behavior;
 
-public class FollowerForward implements Behavior
-{   
+public class GridForward implements Behavior
+{
+
     private DifferentialPilot m_pilot;
     private boolean m_suppressed = false;
     
-    public FollowerForward(DifferentialPilot _pilot) { m_pilot = _pilot;}
+    public GridForward(DifferentialPilot _pilot) { m_pilot = _pilot;}
     
     @Override
     public boolean takeControl() { return true; }
@@ -16,7 +17,7 @@ public class FollowerForward implements Behavior
     @Override
     public void action()
     {
-        m_pilot.setTravelSpeed(10.0);
+        m_pilot.setTravelSpeed(4.0);
 	m_pilot.forward();
         m_suppressed = false;
 		
@@ -30,3 +31,4 @@ public class FollowerForward implements Behavior
     public void suppress() { m_suppressed = true; }
 
 }
+
