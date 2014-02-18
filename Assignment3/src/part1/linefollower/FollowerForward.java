@@ -16,7 +16,7 @@ public class FollowerForward implements Behavior
     @Override
     public void action()
     {
-        m_pilot.setTravelSpeed(10.0);
+        m_pilot.setTravelSpeed(7.0);
 	m_pilot.forward();
         m_suppressed = false;
 		

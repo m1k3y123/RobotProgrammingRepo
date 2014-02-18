@@ -31,11 +31,11 @@ public class BehaviourForward implements Behavior
 	
 	while(!m_suppressed)
 	{
-	    if(m_sonar.getDistance() > 100)
-	    {
+    	 if(m_sonar.getDistance() > 100)
+	    {	
     	    	m_pilot.setTravelSpeed(SPEED);
 	    }
-	    else if(m_sonar.getDistance() <= 100 && m_sonar.getDistance() > 85)
+	   else if(m_sonar.getDistance() <= 100 && m_sonar.getDistance() > 85)
 	    {
 		m_pilot.setTravelSpeed(10);
 	    }

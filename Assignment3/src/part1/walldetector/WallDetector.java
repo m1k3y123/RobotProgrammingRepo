@@ -25,7 +25,8 @@ public class WallDetector
 	Behavior[] behaviours = 
 	{ 
 		new BehaviourForward(m_pilot, m_sonar, SPEED),
-		new BehaviourReverseTurn(m_pilot, m_sonar, SPEED)
+		new BehaviourReverseTurn(m_pilot, m_sonar, SPEED),
+		new Reverse(m_pilot, m_sonar, SPEED)
 	};
 	Arbitrator arby = new Arbitrator(behaviours);
 	arby.start();
@@ -33,6 +34,7 @@ public class WallDetector
     
     public static void main(String[] args)
     {
+    System.out.println("Please Press any button");
 	Button.waitForAnyPress();
 	
 	DifferentialPilot pilot = new DifferentialPilot(2.2, 4.0, Motor.A, Motor.C);

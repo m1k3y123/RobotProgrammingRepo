@@ -108,12 +108,12 @@ public class FollowerSensors implements Behavior
     {
 	// In this, you may want to cater for some margin of error. The light may change slightly over bumps etc.
 	// This is where the testing will come in if you guys have chance.
-	if(m_light_left.getNormalizedLightValue() + 20 < m_cal_left ){
+	if(m_light_left.getNormalizedLightValue() + 25 < m_cal_left ){
 	    m_suppressed = false;
 		return true;
 	}
 	
-	else if(m_light_right.getNormalizedLightValue() + 20 < m_cal_right){
+	else if(m_light_right.getNormalizedLightValue() + 25 < m_cal_right){
 	    m_suppressed = false;
 	    m_is_left = false;
 		return true;
@@ -133,8 +133,8 @@ public class FollowerSensors implements Behavior
 		    
 		    if(m_is_left)
 		    {
-		    	while(m_light_left.getNormalizedLightValue() + 20 < m_cal_left){
-		    	    m_pilot.steer(-75);
+		    	while(m_light_left.getNormalizedLightValue() + 25 < m_cal_left){
+		    	    m_pilot.steer(-55);
 		    	    System.out.println("LEFT: " + m_light_left.getNormalizedLightValue());
 		    	}
 		    	m_suppressed = true;
@@ -145,8 +145,8 @@ public class FollowerSensors implements Behavior
 		    }
 		    else
 		    {
-		    	while(m_light_right.getNormalizedLightValue() + 20 < m_cal_right){
-		    	    m_pilot.steer(75);
+		    	while(m_light_right.getNormalizedLightValue() + 25 < m_cal_right){
+		    	    m_pilot.steer(55);
 		    	    System.out.println("RIGHT: " + m_light_right.getNormalizedLightValue());
 		    	}
 		    	m_suppressed = true;
