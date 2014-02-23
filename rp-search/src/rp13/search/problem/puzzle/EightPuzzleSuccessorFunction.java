@@ -1,6 +1,6 @@
 package rp13.search.problem.puzzle;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import rp13.search.interfaces.SuccessorFunction;
 import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
@@ -25,7 +25,7 @@ public class EightPuzzleSuccessorFunction implements
 	 */
 	@Override
 	public void getSuccessors(EightPuzzle _state,
-			List<ActionStatePair<PuzzleMove, EightPuzzle>> _successors) {
+			ArrayList<ActionStatePair<PuzzleMove, EightPuzzle>> _successors) {
 
 		assert (_successors != null);
 

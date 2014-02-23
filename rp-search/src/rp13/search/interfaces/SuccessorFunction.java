@@ -3,7 +3,7 @@
  */
 package rp13.search.interfaces;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import rp13.search.util.ActionStatePair;
 
@@ -25,7 +25,6 @@ public interface SuccessorFunction<ActionT, StateT> {
 	 * @param _state
 	 * @param _successors
 	 */
-	public void getSuccessors(StateT _state,
-			List<ActionStatePair<ActionT, StateT>> _successors);
+	public void getSuccessors(StateT state, ArrayList<ActionStatePair<ActionT, StateT>> _successors);
 
 }
