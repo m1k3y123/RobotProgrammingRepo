@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * @author root
  *
  */
+@SuppressWarnings("hiding")
 public interface SearchNode<SearchNode, ActionT, StateT>  extends Comparable<SearchNode>
 {
     /**

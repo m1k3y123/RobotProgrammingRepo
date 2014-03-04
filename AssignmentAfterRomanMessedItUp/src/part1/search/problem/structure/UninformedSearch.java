@@ -1,6 +1,7 @@
 package part1.search.problem.structure;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import rp13.search.interfaces.Agenda;
 
@@ -46,7 +47,6 @@ public class UninformedSearch<ActionT, StateT>
 	while(!m_agenda.isEmpty())
 	{
 	    SearchNode node = m_agenda.pop();
-	    
 	    if(node.isGoal(m_goal))
 	    {
 		return node;
@@ -59,6 +59,8 @@ public class UninformedSearch<ActionT, StateT>
 		    m_agenda.push(sNode);
 		}
 	    }
+//	    m_agenda.printAll();
+	    
 	    z++;
 	    nodes.clear();
 	}

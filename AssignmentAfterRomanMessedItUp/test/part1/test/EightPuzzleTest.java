@@ -1,6 +1,7 @@
 package part1.test;
 
 import part1.search.problem.eight.EightPuzzleNode;
+import part1.search.problem.structure.AStarAgenda;
 import part1.search.problem.structure.BreadthFirstAgenda;
 import part1.search.problem.structure.UninformedSearch;
 import rp13.search.problem.puzzle.EightPuzzle;

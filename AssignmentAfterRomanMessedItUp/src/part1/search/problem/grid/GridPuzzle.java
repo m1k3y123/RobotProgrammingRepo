@@ -43,14 +43,15 @@ public class GridPuzzle
     private ArrayList<GridNode> 	m_nodes;
     private ArrayList<NodeMovePair> 	m_blocked;
     
-    public GridPuzzle(int height, int width)
+    public GridPuzzle(int height, int width, ArrayList<NodeMovePair> blocked)
     {
 	WIDTH 		= width;
 	HEIGHT 		= height;
 	m_nodes 	= new ArrayList<GridNode>();
-	m_cur_y 	= 1;
+	m_cur_y 	= 0;
 	m_cur_x 	= 0;
 	m_size 		= WIDTH * HEIGHT;
+	m_blocked 	= blocked;
 	
 	for(int i = 0; i < HEIGHT; i++)
 	    for(int a = 0; a < WIDTH; a++)
@@ -70,16 +71,38 @@ public class GridPuzzle
 		getNodeByCoords(a, i).setPossibleMoves(pos_moves);		
 	    }
 	}
+	addBlockedRoutes(m_blocked);
     }
     
     public GridPuzzle(GridPuzzle puzzle)
     {
 	WIDTH 		= puzzle.WIDTH;
 	HEIGHT 		= puzzle.HEIGHT;
-	m_nodes 	= puzzle.m_nodes;
-	m_cur_y 	= puzzle.m_cur_x;
-	m_cur_x 	= puzzle.m_cur_y;
+	m_cur_y 	= puzzle.m_cur_y;
+	m_cur_x 	= puzzle.m_cur_x;
 	m_size 		= WIDTH * HEIGHT;
+	m_nodes 	= new ArrayList<GridNode>();
+	m_blocked 	= puzzle.m_blocked;
+	
+	for(int i = 0; i < HEIGHT; i++)
+	    for(int a = 0; a < WIDTH; a++)
+		m_nodes.add(new GridNode(a, i));
+	
+	for(int i = 0; i < HEIGHT; i++)
+	{
+	    for(int a = 0; a < WIDTH; a++)
+	    {
+		ArrayList<NodeMovePair> pos_moves = new ArrayList<NodeMovePair>();
+				
+		if(i != 0) pos_moves.add(new NodeMovePair(GridMove.SOUTH, getNodeByCoords(a, i - 1)));
+		if(i != HEIGHT - 1) pos_moves.add(new NodeMovePair(GridMove.NORTH, getNodeByCoords(a, i + 1)));
+		if(a != 0) pos_moves.add(new NodeMovePair(GridMove.WEST, getNodeByCoords(a - 1, i)));
+		if(a != WIDTH - 1) pos_moves.add(new NodeMovePair(GridMove.EAST, getNodeByCoords(a + 1, i)));
+	
+		getNodeByCoords(a, i).setPossibleMoves(pos_moves);		
+	    }
+	}
+	this.addBlockedRoutes(m_blocked);
     }
     
     public GridNode getNodeByCoords(int x, int y)
@@ -135,7 +158,7 @@ public class GridPuzzle
 	return getNodeByCoords(m_cur_x, m_cur_y);
     }
     
-    public void addBlockedRoutes(ArrayList<NodeMovePair> blocked)
+    private void addBlockedRoutes(ArrayList<NodeMovePair> blocked)
     {
 	for (GridNode node : m_nodes)
 	    node.addBlockedRoute(blocked);

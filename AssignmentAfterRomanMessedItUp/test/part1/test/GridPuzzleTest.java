@@ -2,25 +2,28 @@ package part1.test;
 
 import java.util.ArrayList;
 
+import part1.search.problem.grid.GridNode;
 import part1.search.problem.grid.GridPuzzle;
+import part1.search.problem.grid.GridPuzzle.GridMove;
 import part1.search.problem.grid.GridPuzzleNode;
 import part1.search.problem.grid.NodeMovePair;
 import part1.search.problem.structure.BreadthFirstAgenda;
+import part1.search.problem.structure.UninformedSearch;
 
 
 public class GridPuzzleTest
 {
     public static void main(String[]args)
     {
-	GridPuzzle puzzle = new GridPuzzle(3, 3);
-	GridPuzzle ordered = new GridPuzzle(3, 3);
-	ordered.setPosition(2, 2);
+	ArrayList<NodeMovePair> blocked = new ArrayList<NodeMovePair>();
+	blocked.add(new NodeMovePair(GridMove.NORTH, new GridNode(0, 1)));
+	
+	GridPuzzle puzzle = new GridPuzzle(9, 9, blocked);
+	GridPuzzle ordered = new GridPuzzle(9, 9, blocked);
+	ordered.setPosition(8, 6);
 
-//	ArrayList<NodeMovePair> blocked = new ArrayList<NodeMovePair>();
-//	blocked.add(new NodeMovePair(GridMove.NORTH, new GridNode(0, 1)));
-//	
-//	puzzle.addBlockedRoutes(blocked);
-//	
+	
+	
 //	System.out.println(puzzle.getCurrentNode().toString());
 //	
 //	for (NodeMovePair nodeMovePair : puzzle.getCurrentNode().getPosMoves())
@@ -32,29 +35,31 @@ public class GridPuzzleTest
 	
 //	System.out.println(puzzle.getCurrentNode().toString());
 	
-	for (NodeMovePair nmp : puzzle.getCurrentNode().getPosMoves())
-	{
-	    System.out.println(nmp.toString());
-	}
+//	for (NodeMovePair nmp : puzzle.getCurrentNode().getPosMoves())
+//	{
+//	    System.out.println(nmp.toString());
+//	}
 	
 	GridPuzzleNode node = new GridPuzzleNode(puzzle);
 	
 	BreadthFirstAgenda agenda = new BreadthFirstAgenda();
 	agenda.push(node);
 
-	ArrayList<GridPuzzleNode> successors = new ArrayList<GridPuzzleNode>();
-	node.getSuccessors(successors);
-	
-	for (GridPuzzleNode jumblePuzzleNode : successors)
-	{
-	    System.out.println(jumblePuzzleNode.getState());
-	}
+//	ArrayList<GridPuzzleNode> successors = new ArrayList<GridPuzzleNode>();
+//	node.getSuccessors(successors);
+//	
+//	for (GridPuzzleNode jumblePuzzleNode : successors)
+//	{
+//	    System.out.println(jumblePuzzleNode.getState());
+//	}
 
 	// TODO Sort out difference between successors and possibleMoves in this test and their relevant places.
-//	UninformedSearch<GridMove, GridPuzzle> search = new UninformedSearch<GridMove, GridPuzzle>(agenda, ordered);
-//	
-//	GridPuzzleNode newNode = (GridPuzzleNode)search.performSearch();
-//	
+	UninformedSearch<GridMove, GridPuzzle> search = new UninformedSearch<GridMove, GridPuzzle>(agenda, ordered);
+	
+	GridPuzzleNode newNode = (GridPuzzleNode)search.performSearch();
+	
+	System.out.println("HERE2");
+	
 //	for (GridPuzzleNode eightPuzzleNode : newNode.getParents())
 //	{
 //	    if(eightPuzzleNode.getAction() != null)

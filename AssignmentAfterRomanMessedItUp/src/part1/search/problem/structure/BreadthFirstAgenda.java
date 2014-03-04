@@ -8,7 +8,7 @@ import rp13.search.interfaces.Agenda;
 
 public class BreadthFirstAgenda implements Agenda<SearchNode>
 {
-    private ArrayList<SearchNode> m_list;
+    protected ArrayList<SearchNode> m_list;
     private ArrayList<SearchNode> m_popped_list;
     
     public BreadthFirstAgenda()
@@ -62,5 +62,4 @@ public class BreadthFirstAgenda implements Agenda<SearchNode>
 	    
 	return false;
     }
-    
 }

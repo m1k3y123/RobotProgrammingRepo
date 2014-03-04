@@ -1,5 +1,6 @@
 package part1.test;
 
+import lejos.util.Delay;
 import part1.search.problem.jumbled.JumbleMove;
 import part1.search.problem.jumbled.JumblePuzzle;
 import part1.search.problem.jumbled.JumblePuzzleNode;
@@ -48,6 +49,7 @@ public class JumblePuzzleTest
 
 	System.out.println(newNode.getAction());
 	System.out.println(newNode.getState());
+	Delay.msDelay(300000);
 
     }
 

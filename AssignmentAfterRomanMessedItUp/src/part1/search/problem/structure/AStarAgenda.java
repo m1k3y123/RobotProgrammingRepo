@@ -1,8 +1,13 @@
 package part1.search.problem.structure;
 
-import rp13.search.interfaces.SortedAgenda;
+import java.util.Arrays;
 
-public abstract class AStarAgenda extends BreadthFirstAgenda implements SortedAgenda<SearchNode> 
+
+public class AStarAgenda extends BreadthFirstAgenda
 {
-
+    public void sort()
+    {
+	Arrays.sort(m_list.toArray());
+    }
+    
 }

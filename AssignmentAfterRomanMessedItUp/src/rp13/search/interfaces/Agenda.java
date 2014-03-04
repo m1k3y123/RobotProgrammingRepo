@@ -38,5 +38,4 @@ public interface Agenda<ItemT> extends Iterable<ItemT> {
 	 * @return
 	 */
 	boolean contains(ItemT _item);
-
 }
