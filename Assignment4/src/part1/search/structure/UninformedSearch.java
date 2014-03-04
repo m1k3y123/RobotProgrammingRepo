@@ -1,12 +1,8 @@
 package part1.search.structure;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import part1.search.problem.eight.EightPuzzleNode;
 import rp13.search.interfaces.Agenda;
-import rp13.search.problem.puzzle.EightPuzzle;
-import rp13.search.util.ActionStatePair;
 
 /**
  * Perform a search.
@@ -43,7 +39,7 @@ public class UninformedSearch<ActionT, StateT>
      */
     public SearchNode performSearch()
     {
-	ArrayList<ActionStatePair> nodes = new ArrayList<ActionStatePair>();
+	ArrayList<SearchNode> nodes = new ArrayList<SearchNode>();
 	while(!m_agenda.isEmpty())
 	{
 	    SearchNode node = m_agenda.pop();
@@ -55,9 +51,9 @@ public class UninformedSearch<ActionT, StateT>
 	    else
 	    {
 		node.getSuccessors(nodes);
-		for (ActionStatePair pair : nodes)
+		for (SearchNode sNode : nodes)
 		{
-		    m_agenda.push(new EightPuzzleNode((EightPuzzle)pair.getState()));
+		    m_agenda.push(sNode);
 		}
 	    }
 	    nodes.clear();

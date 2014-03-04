@@ -2,8 +2,6 @@ package part1.search.structure;
 
 import java.util.ArrayList;
 
-import rp13.search.util.ActionStatePair;
-
 /**
  * Represents a search node in a search.
  * 
@@ -11,21 +9,21 @@ import rp13.search.util.ActionStatePair;
  * @author root
  *
  */
-public interface SearchNode<ActionT, StateT> 
+public interface SearchNode<SearchNode, ActionT, StateT> 
 {
     /**
      * Will return a list of parent actions.
      * 
      * @return
      */
-    public ArrayList<ActionStatePair<ActionT, StateT>> getParents();
+    public ArrayList<SearchNode> getParents();
    
     /**
      * Will add successors to a list.
      * 
      * @return
      */
-    public void getSuccessors(ArrayList<ActionStatePair<ActionT, StateT>> successors);
+    public void getSuccessors(ArrayList<SearchNode> successors);
     
     /**
      * Returns the state of the node.

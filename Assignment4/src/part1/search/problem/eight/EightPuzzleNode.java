@@ -4,16 +4,15 @@ import java.util.ArrayList;
 
 import part1.search.structure.SearchNode;
 import rp13.search.problem.puzzle.EightPuzzle;
-import rp13.search.problem.puzzle.EightPuzzleSuccessorFunction;
 import rp13.search.problem.puzzle.EightPuzzle.PuzzleMove;
-import rp13.search.util.ActionStatePair;
+import rp13.search.problem.puzzle.EightPuzzleSuccessorFunction;
 
-public class EightPuzzleNode implements SearchNode<PuzzleMove, EightPuzzle>
+public class EightPuzzleNode implements SearchNode<EightPuzzleNode, PuzzleMove, EightPuzzle>
 {
     /**
      * Contains a list of EightPuzzleNodes of previous states.
      */
-    private final ArrayList<ActionStatePair<PuzzleMove, EightPuzzle>> m_parents;
+    private final ArrayList<EightPuzzleNode> m_parents;
 
     /**
      * Contains the current state.
@@ -33,7 +32,7 @@ public class EightPuzzleNode implements SearchNode<PuzzleMove, EightPuzzle>
     }
 
     public EightPuzzleNode(EightPuzzle _state, PuzzleMove _move,
-	    ArrayList<ActionStatePair<PuzzleMove, EightPuzzle>> _parents)
+	    ArrayList<EightPuzzleNode> _parents)
     {
 	m_parents = _parents;
 	m_state = _state;
@@ -41,13 +40,13 @@ public class EightPuzzleNode implements SearchNode<PuzzleMove, EightPuzzle>
     }
 
     @Override
-    public ArrayList<ActionStatePair<PuzzleMove, EightPuzzle>> getParents()
+    public ArrayList<EightPuzzleNode> getParents()
     {
 	return m_parents;
     }
 
     @Override
-    public void getSuccessors(ArrayList<ActionStatePair<PuzzleMove, EightPuzzle>> successors)
+    public void getSuccessors(ArrayList<EightPuzzleNode> successors)
     {
 	EightPuzzleSuccessorFunction successorF = new EightPuzzleSuccessorFunction();
 	successorF.getSuccessors(m_state, successors);
